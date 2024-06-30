@@ -1,0 +1,1328 @@
+/*
+     _____                           _ 
+    / ____|                         | |
+   | |  __  ___ _ __   ___ _ __ __ _| |
+   | | |_ |/ _ \ '_ \ / _ \ '__/ _` | |
+   | |__| |  __/ | | |  __/ | | (_| | |
+    \_____|\___|_| |_|\___|_|  \__,_|_|
+  
+  */
+
+/* Overwrite limit to 720px in iframe */
+.container {
+  max-width: 1000px !important;
+  padding: 0;
+  min-height: calc(100vh - 150px);
+}
+
+body {
+  color: #000000;
+  background: #fff;
+  position: relative; /* Damit der absolute Button #privacy stets ganz unten ist */
+  font-family: var(--body-font), serif;
+}
+
+h1 {
+  font-size: 1.8rem;
+  text-align: center;
+  font-weight: 700;
+  font-family: var(--heading-font), var(--body-font), sans-serif;
+}
+
+.h2,
+h2 {
+  font-size: 1.25rem;
+  text-align: center;
+  font-family: var(--heading-font), var(--body-font), sans-serif;
+  font-weight: bold;
+}
+
+a,
+a:hover {
+  color: var(--link-color);
+}
+
+.btn,
+.card,
+.rounded {
+  border-radius: var(--border-radius) !important;
+  border: none;
+}
+
+@media (hover: hover) {
+  a:hover {
+    text-decoration: underline;
+  }
+}
+
+.row {
+  padding: 0.2em;
+  margin: 0;
+}
+
+.btn {
+  margin: 0.5em;
+}
+
+/*
+     ____                   _             
+    / __ \                 (_)            
+   | |  | |_ __   ___ _ __  _ _ __   __ _ 
+   | |  | | '_ \ / _ \ '_ \| | '_ \ / _` |
+   | |__| | |_) |  __/ | | | | | | | (_| |
+    \____/| .__/ \___|_| |_|_|_| |_|\__, |
+          | |                        __/ |
+          |_|                       |___/ 
+   */
+
+#descriptionContainer {
+  background: var(--primary-color) !important;
+  color: var(--text-on-primary);
+  padding: 5% 2%;
+  border: none !important;
+  margin: 1em 15px;
+}
+
+#descriptionExplanation {
+  margin-top: 20px;
+  font-size: 1rem;
+}
+
+#descriptionExplanation #hint {
+  /* Explanation of voting double button, if present in text */
+  font-size: 0.9rem;
+  line-height: 1.8rem;
+  font-style: italic;
+}
+
+#votingDoubleMockup {
+  border: 1px solid var(--text-on-primary);
+  padding: 5px;
+  margin: 3px;
+  border-radius: 5px;
+  font-style: normal;
+}
+
+#descriptionButtonStart {
+  background: var(--secondary-color);
+  color: var(--text-on-secondary);
+}
+
+@media (hover: hover) {
+  #descriptionButtonStart:hover {
+    opacity: 90%;
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  #sectionFooter {
+    margin-bottom: 40px; /* To avoid overlap with "Update Ranking" button */
+  }
+}
+#sectionFooter {
+  padding: 20px;
+}
+
+#restart {
+  border: 1px solid black;
+  width: max-content;
+}
+
+body .btn-legal {
+  width: max-content;
+  right: 10px;
+  font-size: 0.8rem;
+}
+
+#privacy {
+  bottom: 10px;
+  display: var(--display-privacy);
+}
+
+#imprint {
+  bottom: 40px;
+  display: var(--display-imprint);
+}
+
+@media (hover: hover) {
+  body .btn-legal:hover {
+    background: var(--secondary-color);
+    color: var(--text-on-secondary);
+  }
+}
+
+#madeWithLove {
+  font-size: 0.85rem;
+  text-align: center;
+  margin-top: 50px;
+  display: var(--display-made-with-love);
+  padding-bottom: 80px; /* To avoid overlap with privacy / imprint button on small screens */
+}
+
+/*
+    __  __       _       
+   |  \/  |     (_)      
+   | \  / | __ _ _ _ __  
+   | |\/| |/ _` | | '_ \ 
+   | |  | | (_| | | | | |
+   |_|  |_|\__,_|_|_| |_|
+  
+  */
+
+/* CARD */
+
+.card {
+  color: var(--text-on-primary);
+  border: none !important;
+  background: var(--primary-color) !important;
+}
+
+#speechbubbleSpike {
+  position: relative;
+}
+
+.card::after,
+#speechbubbleSpike::after {
+  -moz-transform: skewX(-15deg);
+  -ms-transform: skewX(-15deg);
+  -webkit-transform: skewX(-15deg);
+  transform: skewX(-15deg);
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 25px;
+  border-width: 40px 50px 0 0;
+  border-style: solid;
+  z-index: 2;
+  border-color: var(--primary-color) transparent;
+}
+
+.card::before,
+#speechbubbleSpike::before {
+  -moz-transform: skewX(-15deg);
+  -ms-transform: skewX(-15deg);
+  -webkit-transform: skewX(-15deg);
+  transform: skewX(-15deg);
+  content: "";
+  position: absolute;
+  top: 101%;
+  left: 29px;
+  border-width: 40px 50px 0 0;
+  border-style: solid;
+  border-color: transparent;
+  z-index: 2;
+}
+
+.card-header {
+  border-bottom: none;
+}
+
+/* Separator between headings and text */
+hr {
+  background: var(--text-on-primary);
+  width: 40px;
+  height: 1px;
+  border-radius: 5px;
+  margin: auto !important;
+}
+
+/* Space between heading and separator */
+#descriptionHeading2 {
+  padding-bottom: 10px;
+}
+
+/* Would otherwise be slightly darker than the rest */
+.card-header {
+  padding-top: 30px;
+  background: unset;
+}
+
+.card-text {
+  font-size: 1.1rem;
+}
+
+/* BUTTONS */
+
+button:focus,
+.btn:focus {
+  box-shadow: none !important;
+}
+
+/* Force buttons to go under each other */
+@media only screen and (max-width: 768px) {
+  #sectionVotingButtons .col {
+    flex-basis: auto;
+    margin: 0;
+  }
+
+  footer .col {
+    flex-basis: auto;
+    margin: 5px 0;
+    width: 50%;
+  }
+}
+
+.btn-voting {
+  color: #000 !important;
+  background: #fff !important;
+  font-size: 1rem;
+}
+@media (hover: hover) {
+  .btn-voting:hover {
+    opacity: 90%;
+  }
+}
+
+#votingSkip,
+#votingBack,
+#skip-set-filter {
+  border: none;
+  color: var(--text-on-primary);
+  background: transparent;
+}
+
+.btn,
+button {
+  -webkit-transition: transform 0.3s, opacity 0.5s !important;
+  transition: transform 0.3s, opacity 0.5s !important;
+}
+
+#votingDouble {
+  font-size: 1rem;
+  border: 1px solid var(--text-on-primary);
+  color: var(--text-on-primary);
+  background: transparent;
+}
+
+#votingDouble.btn-dark,
+#votingDouble.btn-dark:hover {
+  font-weight: 700;
+  padding: calc(0.5rem - 1px) calc(1rem - 1px);
+  border-width: 2px;
+}
+
+#sectionVotingButtons button {
+  margin: 5px 0;
+}
+
+/* NAVIGATION / Jump to Questions */
+
+#sectionNavigation {
+  margin-top: 30px;
+}
+
+.table [id^="jumpToQuestionNr"] {
+  padding: 0.5rem 0.25rem;
+}
+
+td[style*="background: var(--danger);"] a {
+  color: var(--text-on-danger);
+}
+
+td[style*="background: var(--success);"] a {
+  color: var(--text-on-success);
+}
+
+td[style*="background: var(--warning);"] a {
+  color: var(--text-on-warning);
+}
+
+.currentQuestion a {
+  border: 1px solid black;
+  border-radius: 50%;
+}
+
+.currentQuestion {
+  padding: calc(0.5rem - 1px) calc(0.25rem - 1px) !important  ;
+}
+
+@media only screen and (min-width: 768px) {
+  .currentQuestion {
+    padding: calc(0.5rem - 6px) calc(0.25rem - 1px) !important  ;
+  }
+  .currentQuestion a {
+    width: 50%;
+    padding: 5px 0;
+  }
+}
+
+/* 
+    _____                 _ _       
+   |  __ \               | | |      
+   | |__) |___  ___ _   _| | |_ ___ 
+   |  _  // _ \/ __| | | | | __/ __|
+   | | \ \  __/\__ \ |_| | | |_\__ \
+   |_|  \_\___||___/\__,_|_|\__|___/
+  
+  
+   */
+
+/* STATISTICS MODAL */
+
+.modal-backdrop {
+  opacity: 0.65 !important;
+}
+
+/* Needed for iframe in order to show the modal at the very top and not in the middle */
+
+.modal-dialog.modal-dialog-centered {
+  min-height: 300px;
+}
+
+.modal-dialog-centered::before {
+  height: 500px;
+}
+
+[id$="ModalButtonYes"],
+[id$="ModalButtonYes"]:hover,
+[id$="ModalButtonYes"]:active {
+  color: var(--text-on-success) !important;
+  background: var(--success) !important;
+}
+
+/*Results page */
+
+#resultsHeading,
+#resultsIntro,
+#resultsShort {
+  margin-top: 20px;
+}
+
+[id^="resultsByPartyAnswersToQuestion"] {
+  text-align: left;
+}
+
+/* Begründungen der Parteien */
+[headers^="resultsByPartyHeading"],
+[id^="resultsByThesisAnswersToQuestion"] .col-10 {
+  font-size: 0.8rem;
+}
+
+[id^="resultsByThesisAnswersToQuestion"] .col-10 strong {
+  font-size: 0.9rem;
+}
+
+/* Platz machen für Pseudo-Element "Antworten anzeigen" */
+@media only screen and (min-width: 768px) {
+  [id^="resultsByPartyAnswersToQuestion"]
+    > .row
+    > .col
+    > .row:first-child
+    > div:nth-child(4) {
+    margin-top: 25px;
+  }
+}
+
+/* Überschrift "Antworten der Vereine anzeigen */
+#resultsByThesis h2 {
+  margin: 50px 0 30px 0;
+  font-size: 1.8rem;
+}
+
+#resultsIntro {
+  display: flex;
+  align-items: center;
+  font-size: 1rem;
+  border-radius: 5px;
+  margin: 30px auto;
+  gap: 20px;
+  border: 3px solid var(--primary-color);
+  color: var(--primary-color);
+  max-width: 600px;
+  width: max-content;
+  padding: 10px 20px;
+  border-radius: var(--border-radius);
+}
+
+#infoIcon {
+  font-size: 50px;
+}
+
+#resultsIntro > div:nth-child(2) {
+  text-align: center;
+}
+
+/* Give more space to logos */
+#resultsShortTable .col-2 {
+  padding: 5px;
+}
+
+/* Save space in tables */
+@media only screen and (max-width: 768px) {
+  #results > .col,
+  #resultsShortTable > .col,
+  #resultsByPartyTable > .col,
+  #resultsByThesisTable > .col,
+  #resultsByThesisTable .col-2,
+  #resultsButtons + .row > .col,
+  [id^="resultsByPartyAnswersToQuestion"] > .row > .col,
+  [id^="resultsByThesisAnswersToQuestion"] > .col {
+    padding: 0;
+  }
+
+  #resultsByPartyTable .col-2 {
+    padding: 5px;
+  }
+}
+
+/* FARBCODIERUNG */
+
+.btn-success,
+.btn-success:hover,
+.btn-success:focus,
+#resultsByThesisTable .btn-success:active,
+.btn-success.disabled,
+.btn-success:disabled {
+  background: var(--success);
+  color: var(--text-on-success);
+}
+
+.btn-success[class*="Position"]:active {
+  background: var(--success) !important;
+}
+
+.bg-success {
+  background: var(--success) !important;
+  color: var(--text-on-success);
+}
+
+.btn-warning,
+.btn-warning:focus,
+.btn-warning:hover,
+#resultsByThesisTable .btn-warning:active,
+#resultsByPartyTable .btn-warning:active,
+.btn-warning.disabled,
+.btn-warning:disabled {
+  background: var(--warning);
+  color: var(--text-on-warning);
+}
+
+.btn-warning[class*="Position"]:active {
+  background: var(--warning) !important;
+}
+
+.bg-warning {
+  background: var(--warning) !important;
+  color: var(--text-on-warning);
+}
+
+.btn-danger,
+.btn-danger:hover,
+.btn-danger:focus,
+#resultsByThesisTable .btn-danger:active,
+#resultsByPartyTable .btn-danger:active,
+.btn-danger.disabled,
+.btn-danger:disabled {
+  background: var(--danger);
+  color: var(--text-on-danger);
+}
+
+.btn-danger[class*="Position"]:active {
+  background: var(--danger) !important;
+}
+
+.bg-danger {
+  background: var(--danger) !important;
+  color: var(--text-on-danger);
+}
+
+/*Show more / Show less buttons */
+.Buttons_showPartiesAtEnd_minus,
+.Buttons_showPartiesAtEnd_plus {
+  background: var(--primary-color);
+  color: var(--text-on-primary);
+  width: max-content;
+  margin: 10px auto !important;
+  padding: 5px 15px;
+}
+
+.Buttons_showPartiesAtEnd_all {
+  border: none;
+  background: transparent;
+  font-size: 0.9rem;
+}
+@media (hover: hover) {
+  .Buttons_showPartiesAtEnd_minus:hover,
+  .Buttons_showPartiesAtEnd_plus:hover {
+    background: var(--primary-color);
+    color: var(--text-on-primary);
+  }
+}
+
+.btn.disabled,
+.btn:disabled {
+  cursor: auto;
+}
+
+/* Make table descriptions be as wide as the tables */
+#resultsByThesis > p,
+#resultsByParty > p {
+  padding: 0 15px;
+}
+
+/* 	Striped rows in results tables */
+.mow-row-striped:nth-child(odd) {
+  background: var(--striped-results-short-table);
+}
+
+[id^="doubleIcon"] {
+  border: 1px solid black;
+  background: transparent !important;
+  color: #000 !important;
+}
+
+@media (hover: hover) {
+  [id^="doubleIcon"]:hover {
+    text-decoration: underline;
+  }
+}
+
+[id^="doubleIcon"].btn-dark {
+  font-weight: 700;
+  padding: calc(0.25rem - 1px) calc(0.5rem - 1px);
+  border-width: 2px;
+}
+
+button[onclick^="fnToggleSelfPosition"] {
+  border: 1px solid black !important;
+}
+
+/* buttons to expand and collapse replies */
+
+[id$="collapse"] {
+  border: 1px solid black;
+  margin-left: auto;
+  color: #000;
+}
+
+@media (hover: hover) {
+  [id$="collapse"]:hover {
+    background: transparent;
+  }
+}
+[id$="collapse"]:not(.expanded) {
+  color: #000;
+}
+
+[id$="collapse"]:active,
+.expanded,
+.expanded:hover {
+  background: var(--secondary-color) !important;
+  color: var(--text-on-secondary);
+}
+
+/* In resultsByPartyTable, indicate which answer is yours and which is from the initiative */
+
+@media only screen and (min-width: 768px) {
+  [id^="selfPositionContainer"],
+  [id^="partyPositionContainer"] {
+    text-align: center;
+  }
+
+  #selfPositionContainer0::before {
+    content: var(--text-your-answer);
+    white-space: pre;
+    font-style: italic;
+    font-size: 0.85rem;
+  }
+
+  #partyPositionContainer0::before {
+    content: var(--text-party-answer);
+    white-space: pre;
+    font-style: italic;
+    font-size: 0.85rem;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  [id^="selfPositionContainer"],
+  [id^="partyPositionContainer"] {
+    max-width: 100%;
+    flex: unset;
+  }
+
+  [id^="selfPositionContainer"]::before {
+    content: var(--text-your-answer);
+    white-space: pre;
+    font-style: italic;
+  }
+
+  [id^="partyPositionContainer"]::before {
+    content: var(--text-party-answer);
+    white-space: pre;
+    font-style: italic;
+  }
+  /* Make question cover full width of table cell */
+  [id^="resultsByPartyAnswersToQuestion"] .col-10,
+  [id^="resultsByPartyAnswersToQuestion"] .col-6 {
+    -ms-flex: 0 0 100%;
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+}
+
+/* Create a border around the answers to an expanded question in order to seperate it from the next question */
+[id^="resultsByThesisAnswersToQuestion"],
+[id^="resultsByThesisQuestionRow"] {
+  border: 1px solid var(--primary-color) !important;
+}
+
+[id^="resultsByThesisAnswersToQuestion"] {
+  border-top: none !important;
+}
+
+[id^="resultsByThesisQuestionRow"] {
+  border-bottom: none !important;
+}
+
+@media (hover: hover) {
+  button:hover,
+  .btn:hover {
+    -webkit-transform: scale(0.95);
+    transform: scale(0.95);
+  }
+}
+button:active,
+.btn:active {
+  -webkit-transform: scale(0.9);
+  transform: scale(0.9);
+}
+
+.btn:disabled:hover,
+.btn:disabled:focus,
+.btn:disabled:active {
+  -webkit-transform: unset !important;
+  transform: unset !important;
+}
+
+#reultsByParty .img-fluid {
+  max-height: 50px;
+  border-radius: 0 !important;
+}
+
+#resultsShortTable .col-2-col-md-1 {
+  text-align: center;
+}
+
+#resultsShortTable .img-fluid {
+  max-height: 50px;
+  border-radius: 0 !important;
+}
+
+/* addon_angebote+einrichtungen.js */
+
+.freinet-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.freinet-container > p {
+  width: 100%;
+}
+
+.freinet-container > button,
+.freinet-container button:hover,
+.freinet-container button:focus {
+  padding: 5px 20px;
+  flex: 1 1 max-content;
+  max-width: 100%;
+  color: #000;
+  border: 1px solid #000;
+  background: transparent;
+}
+
+.freinet-container button:active {
+  background: #000 !important;
+  color: #fff;
+}
+
+@media screen and (max-width: 767px) {
+  [id^="resultsShortParty"] .col-10 {
+    flex: 0 0 70%;
+  }
+
+  [id^="resultsShortParty"] .col-2 {
+    -ms-flex: 0 0 30%;
+    flex: 0 0 30%;
+    max-width: 30%;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  [id^="resultsShortParty"] .col-10 {
+    flex: 0 0 60%;
+  }
+
+  [id^="resultsShortParty"] .col-2 {
+    -ms-flex: 0 0 10%;
+    flex: 0 0 10%;
+    max-width: 10%;
+  }
+
+  [id^="resultsShortParty"] .col-12 {
+    -ms-flex: 0 0 30%;
+    flex: 0 0 30%;
+    max-width: 30%;
+  }
+}
+
+[id^="resultsByPartyHeading"] .col-2 {
+  max-width: 30%;
+}
+
+@media screen and (min-width: 768px) {
+  [id^="resultsByPartyHeading"] img {
+    grid-row: span 2;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  [id^="resultsByPartyHeading"] .text-container {
+    grid-column: span 2;
+  }
+}
+
+#resultsShortTable .img-fluid {
+  max-height: unset;
+}
+
+.btn-dark:not(:disabled):not(.disabled).active,
+.btn-dark:not(:disabled):not(.disabled):active,
+.show > .btn-dark.dropdown-toggle {
+  background: var(--success);
+}
+
+#permalink-button {
+  background: var(--primary-color);
+  color: var(--text-on-primary);
+  margin: 0;
+}
+#permalink-description {
+  transition: max-height 0.5s, border-color 0.5s;
+  border: 2px solid;
+  border-radius: var(--border-radius);
+  overflow: hidden;
+  max-height: 0;
+  border-color: transparent;
+  width: min(100%, 500px);
+  margin: 10px 0;
+}
+
+.permalink-description-visible {
+  padding: 10px 15px;
+  border-color: var(--success) !important;
+  max-height: 250px !important;
+  word-wrap: break-word;
+}
+
+@media only screen and (min-width: 768px) {
+  #permalink-button,
+  #permalink-description {
+    float: right;
+  }
+  #permalink-description,
+  #resultsShort {
+    clear: both;
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  #permalink-button {
+    display: block;
+    margin-top: 20px;
+  }
+}
+
+#textfilter-label {
+  line-height: 40px;
+  margin-bottom: 0;
+}
+
+#textfilter-dropdown {
+  margin-left: 10px;
+  padding: 5px 10px;
+  border-radius: var(--border-radius);
+  border-color: var(--primary-color);
+  background: transparent;
+}
+
+.flyOutLeft {
+  animation: flyOutLeft 0.4s ease-in-out;
+}
+
+@keyframes flyOutLeft {
+  100% {
+    transform: translateX(-200px);
+    opacity: 0;
+  }
+}
+
+.flyInRight {
+  animation: flyInRight 0.4s ease-in-out;
+}
+
+@keyframes flyInRight {
+  0% {
+    transform: translateX(200px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.flyOutLeftFlyInRight {
+  animation: flyOutLeftFlyInRight 0.8s ease-in-out;
+}
+
+@keyframes flyOutLeftFlyInRight {
+  49% {
+    transform: translateX(-100px);
+    opacity: 0;
+  }
+  50% {
+    transform: translateX(100px);
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.flyOutRightFlyInLeft {
+  animation: flyOutRightFlyInLeft 0.8s ease-in-out;
+}
+
+@keyframes flyOutRightFlyInLeft {
+  49% {
+    transform: translateX(200px);
+    opacity: 0;
+  }
+  50% {
+    transform: translateX(-200px);
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+#internet-above-description {
+  display: var(--display-internet-above-description);
+}
+
+#internet-below-description {
+  display: var(--display-internet-below-description);
+}
+
+/* Create a border around the answers to an expanded question in order to seperate it from the next question */
+[id^="resultsByThesisAnswersToQuestion"],
+[id^="resultsByThesisQuestionRow"] {
+  border: 1px solid var(--primary-color) !important;
+}
+
+[id^="resultsShortPartyDescriptionButton"] {
+  border: 1px solid black;
+}
+
+button:focus,
+.btn:focus {
+  text-decoration: underline;
+}
+
+[id^="resultsShortPartyDescriptionButton"]:not(.expanded) {
+  color: #000;
+  background: transparent;
+}
+
+[id^="resultsShortPartyDescriptionButton"].expanded {
+  color: var(--text-on-secondary);
+}
+
+div[id^="resultsShortPartyDescription"] {
+  padding: 0 20px;
+}
+
+.hidden-by-filter-addon {
+  display: none;
+}
+
+.hidden-by-limit-results-addon {
+  display: none;
+}
+
+#privacyModal .modal-dialog {
+  min-width: 80vw;
+}
+
+[class^="tooltip"] {
+  position: absolute;
+  background: var(--secondary-color);
+  z-index: 5;
+  font-size: 1rem;
+  text-align: left;
+  padding: 10px 25px 10px 10px;
+  margin-left: 10px;
+  color: var(--text-on-secondary);
+  border-radius: var(--border-radius);
+  box-shadow: 2px 2px 5px #0007;
+  border-style: solid;
+  border-color: #000000;
+  border-width: 1px;
+}
+/* Die Zacke, die aus dem Rechteck eine Sprechblase macht, und ihr Rahmen */
+[class^="tooltip"]::after,
+[class^="tooltip"]::before {
+  content: "";
+  position: absolute;
+  border: 10px solid transparent;
+}
+
+[class^="closeTooltip"] {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  position: absolute;
+  font-size: 2.5rem;
+  top: 0px;
+  right: 0px;
+  color: var(--text-on-secondary);
+  line-height: 20px; /* This brings the button to the top right corner instead of leaving a gap to the top */
+}
+
+.tooltipVotingDouble {
+  transform: translateX(-30px);
+  width: min(400px, 93vw);
+  font-weight: 400;
+}
+
+/* Die Zacke, die aus dem Rechteck eine Sprechblase macht */
+.tooltipVotingDouble::after {
+  top: -19px;
+  left: 80px;
+  border-bottom-color: var(--secondary-color);
+}
+/* Der Rahmen der Sprechblase (falls eine Rahmenfarbe und Rahmendicke eingestellt wurden) */
+.tooltipVotingDouble::before {
+  top: -20px;
+  left: 80px;
+  border-bottom-color: #000000;
+}
+
+.tooltipResultsShort {
+  transform: translate(180px, -50px);
+  width: 100px;
+}
+
+.tooltipResultsShort::after {
+  top: 15px;
+  left: -19px;
+  border-right-color: var(--secondary-color);
+}
+
+.tooltipResultsShort::before {
+  top: 15px;
+  left: -20px;
+  border-right-color: #000000;
+}
+
+@media only screen and (min-width: 768px) {
+  .tooltipResultsShort {
+    width: 350px;
+    transform: translate(-120px, 0);
+  }
+
+  .tooltipResultsShort::after {
+    top: -19px;
+    left: 150px;
+    border-color: transparent transparent var(--secondary-color) transparent;
+  }
+
+  .tooltipResultsShort::before {
+    top: -20px;
+    left: 150px;
+    border-color: transparent transparent #000 transparent;
+  }
+}
+
+.tooltipResultsByThesis {
+  transform: translate(-30px, 10px);
+  width: min(400px, 93vw);
+}
+.tooltipResultsByThesis::after {
+  top: -19px;
+  left: 30px;
+  border-bottom-color: var(--secondary-color);
+}
+.tooltipResultsByThesis::before {
+  top: -20px;
+  left: 30px;
+  border-bottom-color: #000000;
+}
+
+#mainLogo {
+  height: 2rem;
+  position: absolute;
+  top: 20px;
+  left: 20px;
+}
+
+.distance-filter {
+  margin-top: 40px;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+/* Style for the input field */
+.dropdown input[type="text"] {
+  width: 300px; /* Set the width of the input */
+  padding: 5px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+#resultsAddonTop {
+  margin-top: 50px;
+  padding: 0 20px;
+}
+
+#resultsAddonTop input[type="number"] {
+  width: 150px;
+  padding: 5px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+/* Style for the dropdown content */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background: #f9f9f9;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  z-index: 1;
+  overflow-y: auto; /* Enable vertical scrolling */
+  max-height: 200px; /* Set max height to limit dropdown size */
+  width: 300px; /* Match the width of the input */
+}
+
+/* Style for dropdown options */
+.dropdown-content option {
+  padding: 10px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.hidden-by-distance-filter-addon {
+  display: none;
+}
+
+#start-distance-filter {
+  background: var(--primary-color);
+  color: var(--text-on-primary);
+}
+
+#refresh-button {
+  background: var(--secondary-color);
+  color: var(--text-on-secondary);
+  position: fixed;
+  z-index: 3;
+  transition: top 0.3s;
+  cursor: pointer;
+}
+
+.show-refresh-button {
+  animation: showRefreshButton 0.4s ease-in-out;
+}
+
+@media only screen and (min-width: 768px) {
+  #refresh-button {
+    padding: 6px 12px;
+    bottom: 20px;
+    right: 20px;
+  }
+
+  @keyframes showRefreshButton {
+    0% {
+      transform: translateX(200px);
+    }
+    100% {
+      transform: translateX(0);
+    }
+  }
+
+  .highlight-refresh-button {
+    animation: highlightRefreshButton 0.4s ease-in-out;
+  }
+
+  @keyframes highlightRefreshButton {
+    50% {
+      transform: translateY(-10px);
+    }
+    100% {
+      transform: translateY(0);
+    }
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  #refresh-button {
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+    padding: 10px 0;
+  }
+
+  @keyframes showRefreshButton {
+    0% {
+      transform: translateY(200px);
+    }
+    100% {
+      transform: translateY(0);
+    }
+  }
+}
+
+/* Short description already showing before details of result are opened */
+.tagline {
+  font-style: italic;
+}
+
+#separator-results-sections {
+  background: var(--primary-color);
+  margin: 50px 0 !important;
+  width: 100%;
+}
+
+/* ADDON_MAKE_QUESTIONS_OPTIONAL.JS */
+
+#optionalQuestionsModalToResults {
+  background: var(--secondary-color);
+  color: var(--text-on-secondary);
+}
+
+/* Buttons on the results page, leading back to optional questions */
+.to-optional-questions {
+  margin: 20px auto !important;
+  display: block;
+  border: 1px solid black;
+}
+
+/* ADDON_CUSTOM_VOTING_BUTTONS.JS */
+
+button[onclick^="toggleSelfPositionOfCustomQuestion"] {
+  border: 1px solid black !important;
+}
+
+/* Country flags on results page representing language(s) of result*/
+.flags img {
+  width: 18px;
+  margin: 0 3px;
+  vertical-align: baseline;
+}
+
+/* Loading animation before results page, spinning circle */
+/* From https://loading.io/css/ */
+
+.lds-default,
+.lds-default div {
+  box-sizing: border-box;
+}
+.lds-default {
+  display: inline-block;
+  position: absolute;
+  width: 80px;
+  height: 80px;
+  top: 30vh;
+  right: 0;
+  left: 0;
+  margin: auto;
+  z-index: 10000;
+}
+.lds-default div {
+  position: absolute;
+  width: 6.4px;
+  height: 6.4px;
+  background: currentColor;
+  border-radius: 50%;
+  animation: lds-default 1.2s linear infinite;
+}
+.lds-default div:nth-child(1) {
+  animation-delay: 0s;
+  top: 36.8px;
+  left: 66.24px;
+}
+.lds-default div:nth-child(2) {
+  animation-delay: -0.1s;
+  top: 22.08px;
+  left: 62.29579px;
+}
+.lds-default div:nth-child(3) {
+  animation-delay: -0.2s;
+  top: 11.30421px;
+  left: 51.52px;
+}
+.lds-default div:nth-child(4) {
+  animation-delay: -0.3s;
+  top: 7.36px;
+  left: 36.8px;
+}
+.lds-default div:nth-child(5) {
+  animation-delay: -0.4s;
+  top: 11.30421px;
+  left: 22.08px;
+}
+.lds-default div:nth-child(6) {
+  animation-delay: -0.5s;
+  top: 22.08px;
+  left: 11.30421px;
+}
+.lds-default div:nth-child(7) {
+  animation-delay: -0.6s;
+  top: 36.8px;
+  left: 7.36px;
+}
+.lds-default div:nth-child(8) {
+  animation-delay: -0.7s;
+  top: 51.52px;
+  left: 11.30421px;
+}
+.lds-default div:nth-child(9) {
+  animation-delay: -0.8s;
+  top: 62.29579px;
+  left: 22.08px;
+}
+.lds-default div:nth-child(10) {
+  animation-delay: -0.9s;
+  top: 66.24px;
+  left: 36.8px;
+}
+.lds-default div:nth-child(11) {
+  animation-delay: -1s;
+  top: 62.29579px;
+  left: 51.52px;
+}
+.lds-default div:nth-child(12) {
+  animation-delay: -1.1s;
+  top: 51.52px;
+  left: 62.29579px;
+}
+@keyframes lds-default {
+  0%,
+  20%,
+  80%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.5);
+  }
+}

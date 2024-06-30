@@ -4,8 +4,8 @@
 
 /* EINSATZZWECK / USE CASE
 
-* WENN der Mat-o-Wahl als <iframe> eingebunden wurde, prüft das Skript, 
-  ob sich die Höhe ändert und ändert (dynamisch) auch die Höhe des Frames.
+* WENN der Mat-o-Wahl als <iframe> eingebunden wurde, prÃ¼ft das Skript, 
+  ob sich die HÃ¶he Ã¤ndert und Ã¤ndert (dynamisch) auch die HÃ¶he des Frames.
   Funktioniert Cross-Domain und mit gleicher Domain.
 
 * IF the Mat-o-Wahl was included as an <iframe>, this script checks the height
@@ -40,38 +40,66 @@
 
 */
 
-
 lastScrollHeight = 0;
 
 // Aktiviere den Eventlistener und warte auf postMessage-Nachrichten
 function fnMatoWahlIframeEventListener(iFrameID) {
+  window.addEventListener(
+    "message",
+    function (ereignis) {
+      var meinIframe = document.getElementById(iFrameID);
 
-	window.addEventListener('message', function(ereignis) {
+      // Auslesen der Ereigenisse aus dem "postMessage"-Array[]
+      // z.B. ["setHeight", 123]
+      var eventName = ereignis.data[0];
 
-		var meinIframe = document.getElementById(iFrameID);
-		
-		// Auslesen der Ereigenisse aus dem "postMessage"-Array[]
-		// z.B. ["setHeight", 123]
-		var eventName = ereignis.data[0];
-		var data = ereignis.data[1];
-		
-		switch(eventName) {
-			case 'setHeight':
-			
-				// wenn sich die Höhe geändert hat 
-				if (lastScrollHeight !== data) {
+      switch (eventName) {
+        case "setHeight":
+          var data = ereignis.data[1];
+          // wenn sich die HÃ¶he geÃ¤ndert hat
+          if (lastScrollHeight !== data) {
+            // neue HÃ¶he des <iframe> setzen ...
+            meinIframe.height = data + "px";
+            // sanften Bildlauf aktivieren
+            meinIframe.style.transition = "height 0.5s";
+            // ... und die alte HÃ¶he speichern.
+            lastScrollHeight = meinIframe.height;
+          }
 
-					// neue Höhe des <iframe> setzen ...
-					meinIframe.height = data + "px"
-					// sanften Bildlauf aktivieren 
-					meinIframe.style.transition = "height 1.5s"
-					// ... und die alte Höhe speichern.
-					lastScrollHeight = meinIframe.height;
-					
-				}
-			
-			break;
-		}
-	}, false);
-	
+          break;
+        case "triggerScrollEvent":
+          // This triggers the eventListener
+          window.dispatchEvent(new CustomEvent("scroll"));
+          break;
+      }
+    },
+    false
+  );
+
+  const iframeWindow = document.querySelector("#myIframe").contentWindow;
+  function getDistanceDocTopToElement(elem) {
+    let location = 0;
+    if (elem.offsetParent) {
+      do {
+        location += elem.offsetTop;
+        elem = elem.offsetParent;
+      } while (elem);
+    }
+    return location >= 0 ? location : 0;
+  }
+
+  // This helps to position the refresh button, see addon_permalink_to_personal_results.js
+  window.addEventListener("scroll", () => {
+    iframeWindow.postMessage(
+      {
+        type: "scroll",
+        viewportHeight: window.innerHeight,
+        scrollY: window.scrollY,
+        distanceDocTopToIframe: getDistanceDocTopToElement(
+          document.querySelector("#myIframe")
+        ),
+      },
+      "*"
+    );
+  });
 }

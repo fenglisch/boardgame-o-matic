@@ -1,0 +1,90 @@
+/* merriweather-sans-regular - latin */
+@font-face {
+  font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+  font-family: "Merriweather Sans";
+  font-style: normal;
+  font-weight: 400;
+  src: url("../fonts/merriweather-sans-v26-latin-regular.woff2") format("woff2"),
+    /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+      url("../fonts/merriweather-sans-v26-latin-regular.ttf") format("truetype"); /* Chrome 4+, Firefox 3.5+, IE 9+, Safari 3.1+, iOS 4.2+, Android Browser 2.2+ */
+}
+
+/* merriweather-sans-italic - latin */
+@font-face {
+  font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+  font-family: "Merriweather Sans";
+  font-style: italic;
+  font-weight: 400;
+  src: url("../fonts/merriweather-sans-v26-latin-italic.woff2") format("woff2"),
+    /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+      url("../fonts/merriweather-sans-v26-latin-italic.ttf") format("truetype"); /* Chrome 4+, Firefox 3.5+, IE 9+, Safari 3.1+, iOS 4.2+, Android Browser 2.2+ */
+}
+
+/* merriweather-sans-700 - latin */
+@font-face {
+  font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+  font-family: "Merriweather Sans";
+  font-style: normal;
+  font-weight: 700;
+  src: url("../fonts/merriweather-sans-v26-latin-700.woff2") format("woff2"),
+    /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+      url("../fonts/merriweather-sans-v26-latin-700.ttf") format("truetype"); /* Chrome 4+, Firefox 3.5+, IE 9+, Safari 3.1+, iOS 4.2+, Android Browser 2.2+ */
+}
+
+/* merriweather-sans-700italic - latin */
+@font-face {
+  font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+  font-family: "Merriweather Sans";
+  font-style: italic;
+  font-weight: 700;
+  src: url("../fonts/merriweather-sans-v26-latin-700italic.woff2")
+      format("woff2"),
+    /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+      url("../fonts/merriweather-sans-v26-latin-700italic.ttf")
+      format("truetype"); /* Chrome 4+, Firefox 3.5+, IE 9+, Safari 3.1+, iOS 4.2+, Android Browser 2.2+ */
+}
+
+/* General hint: If you have only one color from the website where Mitwirk-O-Mat will be embedded,
+   go to https://mycolor.space/ or https://coolors.co and look for fitting colors
+! check the contrast between the background colors and the color of the text on it for accessibility (WCAG AA is enough)
+   https://webaim.org/resources/contrastchecker/ */
+
+:root {
+  --body-font: "Merriweather Sans";
+  --heading-font: "Merriweather Sans";
+  --primary-color: #deb841; /* Color of the card and some buttons. Should be rather dark. Main color of the website fits well. */
+  --text-on-primary: #000;
+  --link-color: #035c77; /* Usually same as main-color. Must be dark enough to be readable on white background. */
+  --secondary-color: #83a4af; /* Color of the start button, the "agree to statistics" and resultsByThesis/Parties buttons. Good contrast to main color. Maybe a green tone? */
+  --text-on-secondary: #000;
+  --success: #02394a; /* For ranking bar and answer buttons. Ideally dark enough to read white text on it */
+  --text-on-success: #fff;
+  --warning: #035c77;
+  --text-on-warning: #fff;
+  --danger: #047b9f;
+  --text-on-danger: #fff;
+  --passive-button-color: #eee; /* Could be grey */
+  --border-radius: 5px;
+  --display-made-with-love: none; /* "block" (label shown) or "none" (label hidden)  */
+  --display-imprint: none; /* "block" (button shown) or "none" (button hidden)  */
+  --display-privacy: block; /* "block" (button shown) or "none" (button hidden)  */
+  --striped-results-short-table: transparent; /* "transparent" (no stripes) or "#e1e7e9" (grey stripes). Stripes conflict with the addon_results_textfilter*/
+  --display-internet-above-description: none; /* "inline" (show) or "none" (hide) */
+  --display-internet-below-description: inline; /* "inline" (show) or "none" (hide) */
+  --text-your-answer: "Your answer:"; /* Pseudo element in resultsByPartyAnswersToQuestion */
+  --text-party-answer: "Answer of the game:"; /* Pseudo element in resultsByPartyAnswersToQuestion */
+}
+
+main {
+  padding-top: 100px; /* To leave room for logo in top left corner */
+}
+
+#mainLogo {
+  height: 4rem;
+}
+
+/* Default is primary-color; yellow text on white background would have to little contrast*/
+#resultsIntro {
+  color: var(--warning);
+  border-color: var(--warning);
+}

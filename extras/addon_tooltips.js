@@ -4,40 +4,6 @@
 // 1.) Allgemeine Angaben
 // General Settings
 
-// Zeige einen Tooltip an der jeweiligen Stelle an? Ja: Tooltip-Text / Nein: 0
-// Beim Button "Doppelt gewichten"
-const TOOLTIP_VOTING_DOUBLE =
-  "Ist dir eine Frage besonders wichtig? Dann klicke auf &quot;Doppelt gewichten&quot;, <strong>bevor</strong> du deine Antwort auswählst.";
-  
-// Bei den Buttons, mit denen man seine eigene Position nachträglich ändern (und ggf. doppelt gewichten) kann
-const TOOLTIP_RESULTS_SHORT =
-  "Klicke auf das Icon, um deine Antwort zu ändern.";
-
-const TOOLTIP_RESULTS_BY_THESIS =
-  "Klicke auf die Buttons, um deine Antwort zu ändern bzw. doppelt zu gewichten.";
-
-// Bei der wie vielten Frage soll der Tooltip angezeigt werden
-const TOOLTIP_RESULTS_BY_THESIS_QUESTION_NUMBER = 1;
-
-// Style aller aktivierten Tooltips
-// Hintergrundfarbe
-const TOOLTIP_BACKGROUND_COLOR = "var(--info)";
-
-// Schriftgröße
-const TOOLTIP_FONT_SIZE = ".9rem";
-
-// Schriftfarbe
-const TOOLTIP_COLOR = "#000000";
-
-// Runder oder eckiger Rahmen?
-const TOOLTIP_BORDER_RADIUS = "3px";
-
-// Farbe des Rahmens
-const TOOLTIP_BORDER_COLOR = "#000";
-
-// Dicke des Rahmens in PIXELN
-const TOOLTIP_BORDER_WIDTH = "1px";
-
 // Bei Bedarf kannst du die CSS-Regeln im Code direkt bearbeiten oder in einem anderen Stylesheet überschreiben
 
 // 2.) In der DEFINITION.JS in den Erweiterten Einstellungen das Add-On eintragen.
@@ -53,46 +19,6 @@ const TOOLTIP_BORDER_WIDTH = "1px";
 // That's just source code. Please move on. Nothing to see here.
 
 /// ////////////////////////////////////////////////////////////////////
-
-// Stylesheet mit allgemeinen Tooltip-Regeln erstellen und einfügen
-window.addEventListener("load", () => {
-  const stylesheet = document.createElement("style");
-  stylesheet.setAttribute("id", "tooltipCSS");
-  stylesheet.textContent = `
-  [class^="tooltip"] {
-    position: absolute;
-    background: ${TOOLTIP_BACKGROUND_COLOR || "var(--secondary-color)"};
-    z-index: 3;
-    font-size: ${TOOLTIP_FONT_SIZE};
-    text-align: left;
-    padding: 10px;
-    margin-left: 10px;
-    color: ${TOOLTIP_COLOR};
-    border-radius: ${TOOLTIP_BORDER_RADIUS};
-    box-shadow: 2px 2px 5px #0007;
-    border-style: solid;
-    border-color: ${TOOLTIP_BORDER_COLOR};
-    border-width: ${TOOLTIP_BORDER_WIDTH};
-  }
-  /* Die Zacke, die aus dem Rechteck eine Sprechblase macht, und ihr Rahmen */
-  [class^="tooltip"]::after, [class^="tooltip"]::before {
-    content: "";
-    position: absolute;
-    border: 10px solid transparent;
-  }
-
-  [class^="closeTooltip"] {
-      background-color: transparent;
-      border: none;
-      padding: 0;
-      cursor: pointer;
-      position: absolute;
-      font-size: 1.5rem;
-      top: -5px;
-      right: 5px;
-  }`;
-  document.head.appendChild(stylesheet);
-});
 
 // Tooltip für Button "Doppelt gewichten" erzeugen
 if (TOOLTIP_VOTING_DOUBLE) {
@@ -110,6 +36,28 @@ if (TOOLTIP_VOTING_DOUBLE) {
           .querySelector("#votingDouble")
           .parentNode.appendChild(tooltipVotingDouble);
 
+        // If users are not forced to close the tooltip, they often just leave it open. On mobile devices, this leads to the pro button being covered all the time
+        // Therefore, we force users on mobile devices to close the button
+        if (window.screen.width < 768) {
+          const tooltipBackdrop = document.createElement("div");
+          tooltipBackdrop.style.cssText =
+            "position: fixed;   top: 0;   left: 0;   z-index: 4;   width: 100vw;   height: 100vh;";
+          tooltipBackdrop.setAttribute("id", "tooltip-backdrop");
+          document
+            .querySelector("#votingDouble")
+            .parentNode.appendChild(tooltipBackdrop);
+
+          tooltipBackdrop.addEventListener("click", () => {
+            tooltipBackdrop.classList.add("d-none");
+            tooltipVotingDouble.classList.add("d-none");
+          });
+          document
+            .querySelector(".closeTooltipVotingDouble")
+            .addEventListener("click", () => {
+              tooltipBackdrop.classList.add("d-none");
+            });
+        }
+
         // Füge einen Event-Listener zum X-Button hinzu
         document
           .querySelector(".closeTooltipVotingDouble")
@@ -117,28 +65,6 @@ if (TOOLTIP_VOTING_DOUBLE) {
             // Verstecke den Tooltip
             tooltipVotingDouble.classList.add("d-none");
           });
-
-        // Für diesen Tooltip spezifische CSS-Regeln hinzufügen
-        document.querySelector("#tooltipCSS").textContent += `
-      .tooltipVotingDouble {
-          transform: translateX(-30px);
-          width: min(400px, 93vw);
-          font-weight: 400;
-        }
-
-        /* Die Zacke, die aus dem Rechteck eine Sprechblase macht */
-        .tooltipVotingDouble::after {
-          top: -19px;
-          left: 80px;
-          border-bottom-color: ${TOOLTIP_BACKGROUND_COLOR}
-        }
-        /* Der Rahmen der Sprechblase (falls eine Rahmenfarbe und Rahmendicke eingestellt wurden) */
-        .tooltipVotingDouble::before {
-          top: -${19 + +TOOLTIP_BORDER_WIDTH.replace("px", "")}px;
-          left: 80px;
-          border-bottom-color: ${TOOLTIP_BORDER_COLOR};
-        }
-      `;
       });
   });
 }
@@ -146,7 +72,11 @@ if (TOOLTIP_VOTING_DOUBLE) {
 if (TOOLTIP_RESULTS_SHORT || TOOLTIP_RESULTS_BY_THESIS) {
   // eslint-disable-next-line no-inner-declarations
   function fnTooltipsInResults() {
-    if (TOOLTIP_RESULTS_SHORT) {
+    if (!document.querySelector("#resultsHeading").textContent) return;
+    if (
+      TOOLTIP_RESULTS_SHORT &&
+      document.querySelector("#resultsHeading").textContent
+    ) {
       let isTooltipResultsShortAlreadyShowing = false;
       // Wenn in der resultsShortTable ein Button "Antworten anzeigen" geklickt wird: prüfe, ob das das erste Mal war.
       // Wenn ja, Tooltip erstellen und hinter dem ersten selfPosition-Button einfügen
@@ -179,51 +109,10 @@ if (TOOLTIP_RESULTS_SHORT || TOOLTIP_RESULTS_BY_THESIS) {
                     .querySelector(".tooltipResultsShort")
                     .classList.add("d-none");
                 });
-            } // Ende: isTooltipResultsShortAlreadyShowing
-          }); // Ende: (e)
-        }); // Ende: foreach button
-        
-      // Für diesen Tooltip spezifische CSS-Regeln hinzufügen
-      document.querySelector("#tooltipCSS").textContent += `
-       .tooltipResultsShort {
-         transform: translate(180px, -50px);
-         width: 100px;
-       }
-
-       .tooltipResultsShort::after {
-         top: 15px;
-         left: -19px;
-         border-right-color: ${TOOLTIP_BACKGROUND_COLOR};
-       }
-       
-       .tooltipResultsShort::before {
-         top: 15px;
-         left: -${19 + +TOOLTIP_BORDER_WIDTH.replace("px", "")}px;;
-         border-right-color: ${TOOLTIP_BORDER_COLOR};
-       }
-       
-
-       
-       @media only screen and (min-width: 768px) {
-         .tooltipResultsShort {
-           width: 350px;
-           transform: translate(-120px, 0);
-         }
-       
-         .tooltipResultsShort::after {
-           top: -19px;
-           left: 150px;
-           border-color: transparent transparent #6eb8bb transparent;
-         }
-       
-         .tooltipResultsShort::before {
-           top: -${19 + +TOOLTIP_BORDER_WIDTH.replace("px", "")}px;
-           left: 150px;
-           border-color: transparent transparent #000 transparent;
-         }
-       }`; // Ende: tooltipCSS
-    } // Ende: if TOOLTIP_RESULTS_SHORT
-    
+            }
+          });
+        });
+    }
     if (TOOLTIP_RESULTS_BY_THESIS) {
       const tooltipResultsByThesis = document.createElement("div");
       tooltipResultsByThesis.classList.add("tooltipResultsByThesis");
@@ -232,7 +121,11 @@ if (TOOLTIP_RESULTS_SHORT || TOOLTIP_RESULTS_BY_THESIS) {
       <button class="closeTooltipResultsByThesis">&times;</button>
       `;
       document
-        .querySelector(`#resultsByThesisQuestion${TOOLTIP_RESULTS_BY_THESIS_QUESTION_NUMBER - 1}`)
+        .querySelector(
+          `#resultsByThesisQuestion${
+            TOOLTIP_RESULTS_BY_THESIS_QUESTION_NUMBER - 1
+          }`
+        )
         .previousElementSibling.appendChild(tooltipResultsByThesis);
       document
         .querySelector(".closeTooltipResultsByThesis")
@@ -242,23 +135,6 @@ if (TOOLTIP_RESULTS_SHORT || TOOLTIP_RESULTS_BY_THESIS) {
             .querySelector(".tooltipResultsByThesis")
             .classList.add("d-none");
         });
-      // Für diesen Tooltip spezifische CSS-Regeln hinzufügen
-      document.querySelector("#tooltipCSS").textContent += `
-      .tooltipResultsByThesis {
-          transform: translate(-30px, 10px);
-          width: min(400px, 93vw);
-        }
-        .tooltipResultsByThesis::after {
-          top: -19px;
-          left: 30px;
-          border-bottom-color: ${TOOLTIP_BACKGROUND_COLOR};
-        }
-        .tooltipResultsByThesis::before {
-          top: -${19 + +TOOLTIP_BORDER_WIDTH.replace("px", "")}px;
-          left: 30px;
-          border-bottom-color: ${TOOLTIP_BORDER_COLOR};
-        }
-      `;
     }
   }
 

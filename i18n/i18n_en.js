@@ -1,40 +1,58 @@
-// ENGLISH LANGUAGE TEXTS http://www.mat-o-wahl.de
+// DEUTSCHE TEXTE http://www.mat-o-wahl.de
 
 // Buttons
-var TEXT_START = "Let's start"
-var TEXT_VOTING_PRO = "Agree"
-var TEXT_VOTING_NEUTRAL = "No opinion"
-var TEXT_VOTING_CONTRA = "Disagree"
-var TEXT_VOTING_SKIP = "Skip (don't count)"
-var TEXT_VOTING_DOUBLE = "Very important to me"
+const TEXT_START = "Let's go!";
+const TEXT_VOTING_PRO = "Like";
+const TEXT_VOTING_NEUTRAL = "Partly";
+const TEXT_VOTING_CONTRA = "Dislike";
+const TEXT_VOTING_BACK = "&larr;&nbsp;Back";
+const TEXT_VOTING_SKIP = "No matter&nbsp;/ Skip &rarr;";
+const TEXT_VOTING_DOUBLE = "Double weight";
 
 // Statistic
-var TEXT_ALLOW_STATISTIC = "Allow anonymous analytics (prognosis)? See <a href='"+imprintPrivacyUrl+"' target='_blank'>privacy statement</a>." // to be deleted
-
-var TEXT_ALLOW_STATISTIC_TITLE = "Before we'll show your results ..."
-var TEXT_ALLOW_STATISTIC_TEXT = "Will you allow to use <strong>anonymous</strong> data for statistics according to our <a href='"+imprintPrivacyUrl+"' target='_blank'>privacy statement</a>? This helps us (the owner(s) of this site) to improve this application."
-var TEXT_ALLOW_STATISTIC_YES = "Yes, sure"
-var TEXT_ALLOW_STATISTIC_NO = "No, thanks."
+const TEXT_ALLOW_STATISTIC_TITLE = "Before you see your results...";
+const TEXT_ALLOW_STATISTIC_TEXT = `Do you authorise us to transfer your <strong>anonymised</strong> answers for statistical purposes in accordance with our <a ${
+  privacyExternalPageLink
+    ? `href="${privacyExternalPageLink}" target="_blank"`
+    : `href="#" onclick="fnShowPrivacy()"`
+}>privacy policy</a>? By doing so, you will help us to improve the Boardgame-O-Matic in the future.`;
+const TEXT_ALLOW_STATISTIC_YES = "Yeah, sure!";
+const TEXT_ALLOW_STATISTIC_NO = "No, thanks.";
 
 // Footer
-var TEXT_IMPRINT = "[§] Legal Notice"
-var TEXT_RESTART = "[&#x21BB;] Restart questionnaire"
+const TEXT_IMPRINT = "Imprint";
+const TEXT_PRIVACY = "Privacy Policy";
+const TEXT_RESTART = "&#x21BB; Restart";
+
+const TITLE_MATOMO_MODAL = "";
+const TEXT_MATOMO_MODAL = `Do you authorise us to collect data about your visit for statistical purposes in order to further develop the Boardgame-O-Matic? You can find more details, such as the option to revoke your consent at any time, in the <a ${
+  privacyExternalPageLink
+    ? `href="${privacyExternalPageLink}" target="_blank"`
+    : `href="#" onclick="fnShowPrivacy()"`
+}>privacy policy</a>.`;
 
 // Results
-var TEXT_RESULTS_HEADING = "Your matches with the different positions"
+const TEXT_RESULTS_HEADING = "Your Top Matches";
+const TEXT_RESULTS_SUBHEADING = "You have the highest match with these games";
 
-var TEXT_RESULTS_INFO_THESES = "You can adjust your own opinion in the second row and reevaluate the result. <br /> Answers to the questions are shown on click on the corresponding question."
-var TEXT_RESULTS_INFO_PARTIES = "Analysis"
+const TEXT_LINK_TO_EXTERNAL_PAGE =
+  "<i class='fa-solid fa-link'></i> View at BoardGameGeek";
 
-var TEXT_RESULTS_BUTTON_THESES = "Questions and answers of parties"
-var TEXT_RESULTS_BUTTON_PARTIES= "All answers of the parties"
+const TEXT_RESULTS_INFO_THESES =
+  "<h2>The answers of all games to the questions</h2>";
+const TEXT_SHOW_PARTY_DESCRIPTION = `<i class="fa-solid fa-chevron-down"></i> Show details`;
+const TEXT_HIDE_PARTY_DESCRIPTION = `<i class="fa-solid fa-chevron-up"></i> Hide details`;
+const TEXT_SHOW_PARTY_ANSWERS = `<i class="fa-solid fa-chevron-down"></i> Compare answers`;
+const TEXT_HIDE_PARTY_ANSWERS = `<i class="fa-solid fa-chevron-up"></i> Hide answers`;
+const TEXT_SHOW_THESIS_ANSWERS = TEXT_SHOW_PARTY_ANSWERS;
+const TEXT_HIDE_THESIS_ANSWERS = TEXT_HIDE_PARTY_ANSWERS;
 
-// The following words may be used as ALT-Text or headers on the results-page 
-var TEXT_QUESTION = "Question"
-var TEXT_POSITION_PARTY = "Opinion of party"
-var TEXT_ANSWER_PARTY = "Answer of party"
-var TEXT_ANSWER_USER = "Your answer"
-var TEXT_IMAGE = "picture or logo"
-var TEXT_PARTY = "Party"
-var TEXT_ANSWER_NORMAL = "Question in single rating"
-var TEXT_ANSWER_DOUBLE = "Question in double rating" 
+// The following words may be used as ALT-Text or headers on the results-page
+const TEXT_QUESTION = "Question";
+const TEXT_POSITION_PARTY = "Position of the game";
+const TEXT_ANSWER_PARTY = "Answer of the game";
+const TEXT_ANSWER_USER = "Your answer";
+const TEXT_IMAGE = "Image";
+const TEXT_PARTY = "Board game";
+const TEXT_ANSWER_NORMAL = "Question is single-weighted";
+const TEXT_ANSWER_DOUBLE = "Question is double-weighted";

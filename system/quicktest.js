@@ -94,7 +94,7 @@ function fnTestShowAll()
 		"imprintEditors",
 		"imprintProgramming",
 		"imprintPictures",
-		"imprintPrivacyUrl",
+		"privacyLink",
 		"separator",
 		"design",
 		"language",
@@ -223,7 +223,7 @@ function fnTestShowAll()
 		.append("<br />")
 		.append("<br /> <b>Bilder / Pictures:</b> "+imprintPictures)
 		.append("<br />")
-		.append("<br /> <b>Datenschutz / Privacy:</b> <a href='http://"+imprintPrivacyUrl+"' target='_blank'>"+imprintPrivacyUrl+"</a>");
+		.append("<br /> <b>Datenschutz / Privacy:</b> <a href='http://"+privacyLink+"' target='_blank'>"+privacyLink+"</a>");
 		
 
 	// BERECHNUNGEN - ab V 0.5 eigentlich nicht mehr nötig
@@ -310,7 +310,7 @@ function fnTestShowAll()
 	// Werte fuer "Wahlprognose" pruefen - Check statistics
 	if (statsRecord == 1)
 	{
-		if (imprintPrivacyUrl.length <= 0)
+		if (privacyLink.length <= 0)
 		{
 			counterError++;
 			$("#testOtherDe").append("<b>("+counterError+").</b>")
@@ -382,21 +382,6 @@ function fnTestShowAll()
 	}
 
 */
-
-
-	// Protokoll prüfen - file:// oder http(s)://
-	var currentProtocol = window.location.protocol;
-	currentProtocol = currentProtocol.substr(0,4)
-	if (currentProtocol != "http") {
-		counterError++
-			$("#testOtherDe").append("<b>("+counterError+").</b>")
-				.append(" Der Browser verhindert, dass Dateien von der lokalen Festplatte gelesen werden. Lösungsvorschläge finden Sie in der Online-Dokumentation unter <a href='https://www.mat-o-wahl.de/dokumentation.html#technikHttp' target='_blank'>Testen der Einstellungen</a>. ")
-				.append("<br />");
-			$("#testOtherEn").append("<b>("+counterError+").</b>")
-				.append(" The browser blocks loading local files. You can find possible solutions in the online-help at <a href='https://www.mat-o-wahl.de/dokumentation.html#technikHttp' target='_blank'>Testen der Einstellungen</a> (German). ")
-				.append("<br />");		
-		}
-
 
 	// Abschlussevaluation - Last check
 	if (counterError > 0)
