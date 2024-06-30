@@ -6,13 +6,13 @@ function fnShowPrivacy() {
 				<div class="modal-content">
 				
 					<div class="modal-header">
-					<h2>${privacyModalTitle}
+					<h2>${PRIVACY_MODAL_TITLE}
 						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 						<span aria-hidden="true">×</span>
 						</button>
 					</div>
 					
-					<div class="modal-body" id="privacyModalBody">${privacyModalGeneral}</div>
+					<div class="modal-body" id="privacyModalBody">${PRIVACY_MODAL_BODY}</div>
 		</div>
 	</div>`;
   document.body.append(privacyModalHtml);

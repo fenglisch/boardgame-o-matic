@@ -9,9 +9,9 @@ function fnStart() {
 
   // 1. Bereich -  Überschriften, Erklärung zur Wahl
   // sectionDescription
-  $("#descriptionHeading1").empty().append(`<h1>${descriptionHeading1}</h1>`);
-  $("#descriptionHeading2").empty().append(`<h2>${descriptionHeading2}</h2>`);
-  $("#descriptionExplanation").empty().append(descriptionExplanation);
+  $("#descriptionHeading1").empty().append(`<h1>${DESCRIPTION_HEADING1}</h1>`);
+  $("#descriptionHeading2").empty().append(`<h2>${DESCRIPTION_HEADING2}</h2>`);
+  $("#descriptionExplanation").empty().append(DESCRIPTION_EXPLANATION);
   $("#descriptionButtonStart").html(TEXT_START);
   $("#descriptionAddonTop").empty();
   $("#descriptionAddonBottom").empty();
@@ -430,7 +430,7 @@ function fnEvaluationShort(arResults) {
 
   if (showInfoBoxAboveResultsShortTable) {
     $("#resultsHeading").append(
-      `<div id='resultsIntro'><div id='infoIcon'>&#9432;</div><div>${textInfoBox}`
+      `<div id='resultsIntro'><div id='infoIcon'>&#9432;</div><div>${TEXT_INFO_BOX}`
     );
   }
 

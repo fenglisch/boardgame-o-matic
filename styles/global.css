@@ -565,6 +565,11 @@ td[style*="background: var(--warning);"] a {
   background: var(--striped-results-short-table);
 }
 
+/* Vertically center names of the results to align them with their position icon */
+#resultsByThesisTable .row-with-one-result .col-10 {
+  margin: auto;
+}
+
 [id^="doubleIcon"] {
   border: 1px solid black;
   background: transparent !important;
