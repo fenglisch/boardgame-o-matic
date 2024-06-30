@@ -10,15 +10,17 @@
 
 ## USE / INSTALLATION
 
-1. **Download and unpack** ZIP archive
+1. Download and unpack ZIP archive
 
-2. **Edit** `/data/definition.js`.
+2. Customise `/data/definition.js`.
 
-3. **Edit** the `CSV files` with the questions and the answers.
+3. Customise the strings in the i18n file of the language you want to use (in the folder `/i18n`)
 
-4. **Test settings** using `INDEX.HTML` (works best on http://localhost/ or your private webspace)
+4. Customise the CSV file containing the questions.
 
-**Optional:** You can find some **addons** in the folder `/extras`. It adds some more functionality to the program, if needed.
+5. Generate the CSV file with the board game data. Creating the file manually for a larger collection would be a lot of work and error-prone due to the strict syntax requirements. You can automatically generate the file with this tool: <a href="https://github.com/fenglisch/generate-csv-file-for-boardgame-o-matic" target="_blank">https://github.com/fenglisch/generate-csv-file-for-boardgame-o-matic</a>
+
+6. Test settings using `INDEX.HTML` (works best on http://localhost/ or your private webspace)
 
 ## DATA PROTECTION / GDPR
 
